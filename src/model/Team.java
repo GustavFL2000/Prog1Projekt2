@@ -30,7 +30,14 @@ public class Team {
                 activeStudents.add(student);
             }
         }
-        return activeStudents.toArray(new Student[0]);
+
+        //return activeStudents.toArray(new Student[0]); //bedre måde Fra Java 11(fra stackoverflow)
+        // kopiere til et array manuelt
+        Student[] arr = new Student[activeStudents.size()];
+        for (int i = 0; i < activeStudents.size(); i++) {
+            arr[i] = activeStudents.get(i);
+        }
+        return arr;
     }
 
     public void removeStudent(String name) {
