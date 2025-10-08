@@ -25,25 +25,24 @@ public class App {
         team2.addStudent(student6);
 
         System.out.println("\nAll students in " + team1.getName() + ":");
-        for (Student student : team1.students) {
-            System.out.println("- " + student.getName());
-        }
+        team1.printStudentList(team1.students);
+
+        System.out.println("\nAll students in " + team2.getName() + ":");
+        team2.printStudentList(team2.students);
 
         System.out.println("\nActive students in " + team1.getName() + ":");
-        for (Student student : team1.getActiveStudentsArrayList()) {
-            System.out.println("- " + student.getName());
-        }
+        team1.printStudentList(team1.getActiveStudentsArrayList());
 
         System.out.println("\nActive students in " + team2.getName() + ":");
-        for (Student student : team2.getActiveStudentsArrayList()) {
-            System.out.println("- " + student.getName());
-        }
+        team2.printStudentList(team2.getActiveStudentsArrayList());
 
         team1.removeStudent("Bob");
         System.out.println("\nStudents in " + team1.getName() + " after removing Bob:");
-        for (Student student : team1.students) {
-            System.out.println("- " + student.getName());
-        }
+        team1.printStudentList(team1.students);
+
+        team2.removeStudent("Diana");
+        System.out.println("\nStudents in " + team2.getName() + " after removing Diana:");
+        team2.printStudentList(team2.students);
 
     }
 }

@@ -40,6 +40,12 @@ public class Team {
         }
     }
 
+    public void printStudentList(ArrayList<Student> studentList) {
+        for (Student student : studentList) {
+            System.out.println("- " + student.getName());
+        }
+    }
+
     public void addStudent(Student student) {
         this.students.add(student);
     }
