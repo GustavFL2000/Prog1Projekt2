@@ -1,12 +1,17 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Team {
 
     private String name;
     private String room;
-    public ArrayList<Student> students = new ArrayList<>();
+    private ArrayList<Student> students = new ArrayList<>();
+
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
 
     public Team() {
         this.name = "Unknown";
@@ -18,14 +23,14 @@ public class Team {
         this.room = room;
     }
 
-    public ArrayList<Student> getActiveStudentsArrayList() {
+    public Student[] getActiveStudents() {
         ArrayList<Student> activeStudents = new ArrayList<>();
         for (Student student : students) {
             if (student.isActive()) {
                 activeStudents.add(student);
             }
         }
-        return activeStudents;
+        return activeStudents.toArray(new Student[0]);
     }
 
     public void removeStudent(String name) {
@@ -33,17 +38,20 @@ public class Team {
         while (i < students.size()) {
             if (students.get(i).getName().equals(name)) {
                 students.remove(i);
-                break;
+                return;
             } else {
                 i++;
             }
         }
     }
 
-    public void printStudentList(ArrayList<Student> studentList) {
-        for (Student student : studentList) {
-            System.out.println("- " + student.getName());
+    // Bruger averageGrade metoden fra Student klassen til at summere dem op og dele med antallet af studerende
+    public double getTeamAverageGrade() {
+        double total = 0;
+        for (Student student : students) {
+            total += student.getAverageGrade();
         }
+        return total / students.size();
     }
 
     public void addStudent(Student student) {
@@ -54,4 +62,8 @@ public class Team {
         return name;
     }
 
+    @Override
+    public String toString() {
+        return name + " (" + room + ") " + "\nStudents: " + Arrays.toString(students.toArray());
+    }
 }
