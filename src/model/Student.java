@@ -5,9 +5,14 @@ public class Student {
     private String name;
     private boolean active;
     private int[] grades;
+    private char[] answers = new char[10];
 
-    public int[] getGrades() {
-        return grades;
+    public char[] getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(char[] answers) {
+        this.answers = answers;
     }
 
     public Student() {
@@ -46,10 +51,6 @@ public class Student {
 
     public String getName() {
         return name;
-    }
-
-    public int[] getGrade() {
-        return grades;
     }
 
     public boolean isActive() {

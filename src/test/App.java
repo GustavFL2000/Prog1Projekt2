@@ -1,6 +1,7 @@
 package test;
 
 import java.util.Arrays;
+import model.MultipleChoiceTest;
 import model.Student;
 import model.Team;
 
@@ -51,5 +52,9 @@ public class App {
 
         System.out.println("\nAverage grade of " + team1.getName() + ": " + team1.getTeamAverageGrade());
         System.out.println("Average grade of " + team2.getName() + ": " + team2.getTeamAverageGrade());
+
+        //Opgave 2.5
+        student1.setAnswers(MultipleChoiceTest.generateRandomAnswers());
+        System.out.println("Svar for " + student1.getName() + ": " + Arrays.toString(student1.getAnswers()));
     }
 }
