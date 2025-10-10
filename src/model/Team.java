@@ -151,4 +151,8 @@ public class Team {
     public String toString() {
         return name + " (" + room + ") " + "\nStudents: " + Arrays.toString(students.toArray());
     }
+
+    public String getRoom() {
+        return room;
+    }
 }
