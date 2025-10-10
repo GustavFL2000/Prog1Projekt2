@@ -15,6 +15,7 @@ public class App {
         Student student1 = new Student("Alice", true, new int[]{7, 8, 9});
         Student student2 = new Student("Bob", false, new int[]{4, 7, 10});
         Student student3 = new Student("Charlie", true, new int[]{12, 12, 12});
+        Student studentx = new Student("Gustav", true, new int[]{12, 12, 12});
         Student student4 = new Student("Diana", true, new int[]{10, 10, 10});
         Student student5 = new Student("Eve", false, new int[]{2, 4, 10});
         Student student6 = new Student("Frank", true, new int[]{2, 7, 10});
@@ -22,6 +23,7 @@ public class App {
         team1.addStudent(student1);
         team1.addStudent(student2);
         team1.addStudent(student3);
+        team1.addStudent(studentx);
 
         team2.addStudent(student4);
         team2.addStudent(student5);
@@ -54,7 +56,28 @@ public class App {
         System.out.println("Average grade of " + team2.getName() + ": " + team2.getTeamAverageGrade());
 
         //Opgave 2.5
-        student1.setAnswers(MultipleChoiceTest.generateRandomAnswers());
-        System.out.println("Svar for " + student1.getName() + ": " + Arrays.toString(student1.getAnswers()));
+        team1.generateAnswersForActiveStudents();
+        team1.printAnswers();
+
+        team2.generateAnswersForActiveStudents();
+        team2.printAnswers();
+
+        //Opgave2.6
+        System.out.println("\nKorrekte svar: " + Arrays.toString(MultipleChoiceTest.getCorrectAnswers()));
+
+        System.out.println("\nAntal korrekte svar pr. student i " + team1.getName() + ":");
+        System.out.println(Arrays.toString(team1.correctAnswersCountArray()) + "\n");
+
+        //2.7
+        System.out.println(Arrays.toString(team1.studentText()));
+        System.out.println(Arrays.toString(team2.studentText()));
+
+        //2.8
+        System.out.println("\nFordeling af korrekte svar i " + team1.getName() + ":");
+        int[] distribution1 = team1.correctCountPerQuestion();
+        for (int i = 0; i < distribution1.length; i++) {
+            System.out.println("Spørgsmål " + (i + 1) + ": " + distribution1[i] + " korrekte svar");
+        }
+
     }
 }

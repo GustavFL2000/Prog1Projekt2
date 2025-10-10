@@ -5,9 +5,68 @@ import java.util.Arrays;
 
 public class Team {
 
-    private String name;
-    private String room;
-    private ArrayList<Student> students = new ArrayList<>();
+    private final String name;
+    private final String room;
+    private final ArrayList<Student> students = new ArrayList<>();
+
+    public int[] correctCountPerQuestion() {
+        int[] counts = new int[10]; // Antal spørgsmål er 10
+
+        for (Student student : students) {
+            char[] answers = student.getAnswers();
+            for (int i = 0; i < answers.length; i++) {
+                if (answers[i] == MultipleChoiceTest.getCorrectAnswers()[i]) {
+                    counts[i]++;
+                }
+            }
+        }
+
+        return counts;
+    }
+
+    public String[] studentText() {
+        String[] text = new String[students.size()];
+
+        for (int i = 0; i < students.size(); i++) {
+            Student student = students.get(i);
+            String line = String.format("%-10s | Gennemsnit: %-5.2f | Korrekte svar: %d",
+                    student.getName(),
+                    student.getAverageGrade(),
+                    student.correctAnswersCount());
+            text[i] = line;
+        }
+
+        return text;
+    }
+
+    public int[] correctAnswersCountArray() {
+        int[] countArray = new int[students.size()];
+
+        for (int i = 0; i < students.size(); i++) {
+            countArray[i] = students.get(i).correctAnswersCount();
+        }
+
+        return countArray;
+    }
+
+    public void generateAnswersForActiveStudents() {
+        for (Student student : students) {
+            if (student.isActive()) {
+                student.setAnswers(MultipleChoiceTest.generateRandomAnswers());
+            }
+        }
+    }
+
+    public void printAnswers() {
+        System.out.println("\n--- Svar for " + name + " ---");
+        for (Student student : students) {
+            if (student.isActive()) {
+                System.out.println(student.getName() + ": " + Arrays.toString(student.getAnswers()));
+            } else {
+                System.out.println(student.getName() + " er inaktiv og kan ikke afgive svar.");
+            }
+        }
+    }
 
     public Team() {
         this.name = "Unknown";
